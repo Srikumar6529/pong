@@ -19,6 +19,7 @@ def main():
     p2 = Pad(SCREEN_WIDTH - 20 - PLAYER_WIDTH, SCREEN_HEIGHT / 2, PLAYER_LENGTH, PLAYER_WIDTH)
    
     while True:
+        keys = pygame.key.get_pressed()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
@@ -30,7 +31,14 @@ def main():
         pygame.display.flip()
         dt = clock.tick(60) / 1000
         for item in updatable:
-            item.update(dt)
+            if isinstance(item,Ball):
+                item.update(dt,[p1,p2])
+            else:
+                if keys[pygame.K_UP] or keys[pygame.K_DOWN]:
+                    p2.update(dt)
+                elif keys[pygame.K_w] or keys[pygame.K_s]:
+                    p1.update(dt)
+            
 
 
 if __name__ == "__main__":

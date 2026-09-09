@@ -5,8 +5,8 @@ class CircleShape(pygame.sprite.Sprite):
 
     def __init__(self, x: float, y: float, radius: float) -> None:
 
-        if hasattr(self,"container"):
-            super().__init__(*self,containers)
+        if hasattr(self,"containers"):
+            super().__init__(*self.containers)
         else:
             super().__init__()
 

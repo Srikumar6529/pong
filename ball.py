@@ -15,7 +15,18 @@ class Ball(CircleShape):
            self.velocity. y = -1 * self.velocity.y
         elif self.position.y + self.radius >= SCREEN_HEIGHT:
             self.velocity. y = -1 * self.velocity.y
-        if self.position.x - self.radius <= 0:
+        elif self.position.x - self.radius <= 0:
            self.velocity. x = -1 * self.velocity.x
         elif self.position.x + self.radius >= SCREEN_WIDTH:
             self.velocity. x = -1 * self.velocity.x
+        else:
+            for pad in pads:
+                dist = (self.position.x - pad.position.x) ** 2 + (self.position.y - pad.position.y) ** 2
+                dist = dist ** .5
+
+                if dist <= (self.radius + pad.width):
+                    self.velocity.x = -1 * self.velocity.x
+                    self.velocity.y = -1 * self.velocity.y
+                    return
+
+

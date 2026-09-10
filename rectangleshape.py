@@ -12,6 +12,8 @@ class RectangleShape(pygame.sprite.Sprite):
         self.position: pygame.Vector2 = pygame.Vector2(x,y)
         self.length = length
         self.width = width
+        self.center = None
+        self.score = 0
     def draw(self, screen: pygame.Surface) -> None:
         pass
     def update(seld, df: float) -> None:

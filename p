@@ -10,7 +10,7 @@ class Ball(CircleShape):
         self.velocity = self.velocity.rotate(random.randrange(0,361))
     def draw(self,screen):
         pygame.draw.circle(screen,"white",self.position,self.radius,LINE_WIDTH)
-    def scores(self,x,y):
+    def scores():
         print(f"player 1: {x}")
         print(f"player 2: {y}")
     def update(self,dt,pads):
@@ -23,13 +23,13 @@ class Ball(CircleShape):
            #self.velocity. x = -1 * self.velocity.x
            print("GAME OVER!!!!")
            pads[1].score += 1
-           self.scores(pads[0].score,pads[1].score)
+           scores(pads[0].score,pads[1].score)
            sys.exit()
         elif self.position.x + self.radius >= SCREEN_WIDTH:
             #self.velocity. x = -1 * self.velocity.x
             print("GAME OVER!!!")
             pads[0].score += 1
-            self.scores(pads[0].score,pads[1].score)
+            scores(pads[0].score,pads[1].score)
             sys.exit()
         else:
             for pad in pads:

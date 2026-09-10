@@ -6,7 +6,8 @@ class Ball(CircleShape):
 
     def __init__(self, x: float, y: float):
         super().__init__(x,y,BALL_RADIUS)
-        self.velocity = pygame.Vector2(BALL_SPEED,BALL_SPEED)
+        unitvector = pygame.Vector2(0,1)
+        self.velocity = unitvector * BALL_SPEED
         self.velocity = self.velocity.rotate(random.randrange(0,361))
     def draw(self,screen):
         pygame.draw.circle(screen,"white",self.position,self.radius,LINE_WIDTH)

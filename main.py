@@ -14,8 +14,26 @@ def main():
     Pad.containers = (updatable,drawable)    
     
     pong = Ball(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-    paddle1 = Pad(0, SCREEN_HEIGHT//2 - PADDLE_LENGTH//2, PADDLE_LENGTH, PADDLE_WIDTH)
-    paddle2 = Pad(SCREEN_WIDTH-0 - PADDLE_WIDTH, SCREEN_HEIGHT//2 - PADDLE_LENGTH//2, PADDLE_LENGTH, PADDLE_WIDTH)
+    paddle1 = Pad(
+            0, 
+            SCREEN_HEIGHT//2 - PADDLE_LENGTH//2, 
+            PADDLE_LENGTH, 
+            PADDLE_WIDTH,
+            {
+                "up":pygame.K_w,
+                "down": pygame.K_s
+            }
+        )
+    paddle2 = Pad(
+            SCREEN_WIDTH-0 - PADDLE_WIDTH, 
+            SCREEN_HEIGHT//2 - PADDLE_LENGTH//2, 
+            PADDLE_LENGTH, 
+            PADDLE_WIDTH,
+            {
+                "up":pygame.K_UP,
+                "down":pygame.K_DOWN
+            }
+        )
    
     while True:
         keys = pygame.key.get_pressed()
@@ -33,11 +51,7 @@ def main():
             if isinstance(item,Ball):
                 item.update(dt,[paddle1,paddle2])
             else:
-                if keys[pygame.K_UP] or keys[pygame.K_DOWN]:
-                    paddle2.update(dt)
-                if keys[pygame.K_w] or keys[pygame.K_s]:
-                    paddle1.update(dt)
-            
+                item.update(dt)
 
 
 if __name__ == "__main__":
